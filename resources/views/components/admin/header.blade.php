@@ -5,7 +5,7 @@
             <div class="admin-avatar shadow-2xl">
                 <img src="{{ img_a_url('avatar-m5.jpg') }}" alt="">
             </div>
-            <p class="admin-name text-ellipsis w-48 text-white overflow-hidden whitespace-nowrap italic">
+            <p class="admin-name text-ellipsis w-48 text-black overflow-hidden whitespace-nowrap italic">
                 raul garcía osorio
             </p>
         </div>

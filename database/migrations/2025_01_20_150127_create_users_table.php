@@ -18,6 +18,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->foreignId('idRol')
+                -> constrained('rols', 'id')
+                -> onDelete('cascade');
             $table->timestamps();
         });
 
@@ -47,3 +50,4 @@ return new class extends Migration
         Schema::dropIfExists('sessions');
     }
 };
+

@@ -43,7 +43,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M280-160v-80h400v80H280Zm160-160v-327L336-544l-56-56 200-200 200 200-56 56-104-103v327h-80Z"/></svg>
                     </li>
                     <li>
-                        <form action="{{ route('menu.destroy', $menu) }}" method="POST" style="display:inline;" id="form-destroy">
+                        <form action="{{ route('menu.destroy', $menu->id) }}" method="POST" style="display:inline;" id="form-destroy">
                             @csrf
                             @method('DELETE')
                             <button type="submit" id="submit-delete" style="background:none; border:none; cursor:pointer;">
@@ -56,9 +56,17 @@
                     </li>
                 @endif
                 <li>
-                    <a href="">Cerrar sesión </a>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: flex; justify-content: space-between; width: 100%;">
+                        @csrf
+                        <button type="submit" class="flex flex-row justify-between w-full">
+                            Cerrar sesión
+                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
+                                <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/>
+                            </svg>
+                        </button>
+                    </form>
                 </li>
+
             </ul>
         </div>
     </div>
