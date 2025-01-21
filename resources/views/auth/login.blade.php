@@ -4,7 +4,7 @@
     <div class="login-container">
         <h2 class="font-black">LOGIN</h2>
 
-        <form action="{{ route('login') }}" method="post" autocomplete="off">
+        <form action="{{ route('login') }}" method="post" autocomplete="off" class="login-singup-forms">
             @csrf
 
             <fieldset class="flex flex-col">

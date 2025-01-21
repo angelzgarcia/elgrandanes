@@ -44,9 +44,14 @@ class AuthController extends Controller
         return view('auth.singup');
     }
 
-    public function singup()
+    public function singup(Request $request)
     {
-        return view('auth.singup');
+        $data = $request -> validate([
+            'name' => 'required|string|min:3|max:18',
+            'lastname' => 'required|string|min:3|max:35',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|max:15',
+        ]);
     }
 
 }

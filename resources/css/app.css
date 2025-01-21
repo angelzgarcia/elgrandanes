@@ -97,7 +97,7 @@
 
 /* A D M I N     S T Y L E S */
 
-/* layout - body */
+/* BODY - LAYOUT ADMIN */
 .admin-home {
     height: 100vh;
     width: 100%;
@@ -107,259 +107,286 @@
     "sidebar nav nav"
     "sidebar main main"
     "sidebar main main";
-    --width-sidebar: 350px;
+    --width-sidebar: 260px;
     grid-template-rows: 100px 1fr;
     grid-template-columns: var(--width-sidebar) 1fr;
     overflow-x: hidden;
 
-    /* header */
-    & .admin-header {
-        grid-area: nav;
-        background-color: #00af9a;
-        background-color: var(--primary-color);
-        /* color: white; */
+}
+/* HEADER - NAVBAR */
+.admin-header {
+    grid-area: nav;
+    background-color: #00af9a;
+    background-color: var(--primary-color);
+    /* color: white; */
+    display: flex;
+    /* nav-bar */
+    & .admin-nav-bar {
+        width: 100%;
         display: flex;
-        /* nav-bar */
-        & .admin-nav-bar {
-            width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        & .avatar-name {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            & .avatar-name {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 1rem;
-                & .admin-avatar {
-                    width: 65px;
-                    border: 5px solid var(--secondary-color);
-                    overflow: hidden;
-                    background-color: #fff;
-                    border-radius: 50%;
-                    & img { width: 100%; height: 100%;}
-                }
-                & p { font-family: 'Montserrat Alternates'; }
-            }
-            & .dbt { font-family: 'Montserrat Alternates'; }
-            & .logo {
-                top: 15px;
-                min-width: 90px;
-                min-height: 90px;
-                /* border: 2px dashed black; */
+            gap: 1rem;
+            & .admin-avatar {
+                width: 65px;
+                border: 5px solid var(--secondary-color);
+                overflow: hidden;
                 background-color: #fff;
                 border-radius: 50%;
-                object-position: top;
-                /* box-shadow: 0 0 .5rem .1rem gray; */
-                margin: 0 2rem;
-                transition: .32s all ease;
-                position: relative;
-                & a img { min-width: 150px; min-height: 150px; position: absolute; top: -35px; left: -25px; }
-                &:hover { transform: rotate(350deg); }
-                &:active { transform: scale(82%); transition: .06s ease; }
+                & img { width: 100%; height: 100%;}
             }
+            & p { font-family: 'Montserrat Alternates'; }
         }
-    }
-
-    /* sidebar - container */
-    & .admin-sidebar {
-        grid-area: sidebar;
-        background-color: white;
-        color: black;
-        font-weight: 700;
-        scrollbar-width: thin;
-        scrollbar-color: white white;
-        /* scrollbar-color: white var(--primary-color); */
-        overflow: auto;
-        position: fixed;
-        box-shadow: .3rem 0 1.2rem 0 #4c52523f;
-        height: 100vh;
-        & .sidebar-content {
-            margin: auto;
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            & .title-sidebar {
-                font-size: 1.9rem;
-                text-transform: uppercase;
-                margin-block: 3rem;
-                width: 100%;
-                text-align: center;
-                border-block-end: var(--palegold) solid .5rem;
-                border-radius: .4em;
-                font-family: 'Montserrat Alternates';
-            }
-            & p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; }
-            & .sidebar-options {
-                & ul {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 3.2em;
-                    & li {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        gap: 1rem;
-                        font-size: 1rem;
-                        letter-spacing: .09rem;
-                        font-family: "Sansita Swashed";
-                        & svg { width: 30px; height: 30px; fill: var(--primary-color); }
-                        & a, button {
-                            color: #000;
-                            &:hover { color: #6d6868; }
-                            &:active { transform: scale(90%); transition: all .05s ease; }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /* contenenedor de slots */
-    & .admin-slot { grid-area: main; }
-
-    /* dashboard - slot */
-    & .dashboard-content {
-        min-height: 100%;
-        min-width: 100%;
-        background-image: url("../../public/imgs/downloads/240_F_909214144_1Gzj10bZSrVAx6m86DtIpkYlFBWqZDYR.jpg ");
-        background-size: auto;
-        background-position: 5% bottom;
-        background-repeat: no-repeat;
-        & h2 {
-            font-family: 'Sansita Swashed';
-            font-size: 2.3rem;
-            text-align: center;
-            & svg {
-                width: 30px;
-                height: 30px;
-            }
-        }
-        /* graficas */
-        & .charts {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-            grid-template-rows: repeat(auto-fill, minmax(1fr, 1fr));
-            padding: 1em;
-            justify-items: center;
-            align-items: end;
-            & div { width: 90%; }
-        }
-    }
-
-    /* menu - slot */
-    & .menu-form-container {
-        min-width: 100%;
-        /* min-height: 100%; */
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-        padding: 2rem 2rem 4rem 2rem;
-        & h2, h3 {
-            font-family: 'Sansita Swashed';
-            font-size: 3rem;
-            text-align: center;
-        }
-        & form {
-            font-family: 'Montserrat';
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            & .drop-zone {
-                border: 2px dashed #007bff;
-                border-radius: 5px;
-                padding: 20px;
-                text-align: center;
-                cursor: pointer;
-                transition: background-color 0.3s;
-                & .dragover {
-                    background-color: #e9ecef;
-                    border-color: #0056b3;
-                }
-                & p {
-                    margin: 0;
-                    color: #6c757d;
-                    font-size: 16px;
-                }
-                &:hover { background-color: #f8f9fa; }
-            }
-            & .file-info {
-                color: #a8aaaa;
-                font-style: italic;
-                font-weight: bold;
-                justify-content: center;
-                align-items: center;
-                gap: 1rem;
-                text-wrap: no-wrap;
-                text-overflow: ellipsis;
-                & svg { fill: var(--green); min-width: 30px; min-height: 30px; max-width: 30px; max-height: 30px;}
-            }
-            & button {
-                background-color: var(--primary-color);
-                color: white;
-                padding: 10px 20px;
-                border-radius: .2rem;
-                display: flex;
-                font-family: 'Montserrat Alternates';
-                text-transform: uppercase;
-                justify-content: center;
-                font-size: 1.2rem;
-                gap: 2rem;
-                align-items: center;
-                transition: .2s ease;
-                & svg { fill: white; }
-                &:hover {
-                    background-color: var(--secondary-color);
-                }
-            }
-        }
-    }
-    /* ver pdf */
-    .pdf-show {
-        padding: 2rem 2rem 3rem 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-
-        & .pdf-info {
-            font-family: 'Montserrat';
-            display: flex;
-            flex-direction: column;
-            gap: .7rem;
-            & div {
-                justify-content: space-between;
-                display: flex;
-                /* background-color: #e6991570; */
-                border: 2.3px dashed #1a1408;
-                border-radius: .4rem;
-                padding: .2rem 1rem;
-                color: #000000;
-                font-weight: bold;
-                & p {
-                    font-size: 1.1rem;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: .5rem;
-                    & svg { fill: #e69915; height: 20px; }
-                }
-                & span { font-weight: normal; font-family: 'Sansita Swashed'; text-align: end; padding-inline-end: .6rem; }
-            }
-        }
-    }
-    /* update section ver menu */
-    & .pdf-view {
-        min-width: 90%;
-        min-height: 100vh;
-        & iframe {
-            border-radius: 1rem;
-            margin: auto;
-            min-width: 100%;
-            min-height: inherit;
+        & .dbt { font-family: 'Montserrat Alternates'; }
+        & .logo {
+            top: 15px;
+            min-width: 90px;
+            min-height: 90px;
+            /* border: 2px dashed black; */
+            background-color: #fff;
+            border-radius: 50%;
+            object-position: top;
+            /* box-shadow: 0 0 .5rem .1rem gray; */
+            margin: 0 2rem;
+            transition: .32s all ease;
+            position: relative;
+            & a img { min-width: 150px; min-height: 150px; position: absolute; top: -35px; left: -25px; }
+            &:hover { transform: rotate(350deg); }
+            &:active { transform: scale(82%); transition: .06s ease; }
         }
     }
 }
 
+/* SIDEBAR */
+.admin-sidebar {
+    grid-area: sidebar;
+    background-color: white;
+    color: black;
+    font-weight: 700;
+    scrollbar-width: thin;
+    scrollbar-color: white white;
+    /* scrollbar-color: white var(--primary-color); */
+    overflow: auto;
+    position: fixed;
+    box-shadow: .3rem 0 1.2rem 0 #4c52523f;
+    height: 100vh;
+}
+/* contenido de la sidebar */
+.sidebar-content {
+    margin: auto;
+    padding: 3rem 2rem;
+    display: flex;
+    width: 260px;
+    flex-direction: column;
+}
+/* fecha y hora ? */
+p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; text-align: center; }
+/* cafe bar name */
+.title-sidebar {
+    font-size: 1.35rem;
+    text-transform: uppercase;
+    margin-block: 3rem;
+    width: 100%;
+    text-align: center;
+    border-block-end: var(--palegold) solid .5rem;
+    border-radius: .4em;
+    font-family: 'Montserrat Alternates';
+}
+/* enlaces de la sidebar */
+.sidebar-options {
+    & ul {
+        display: flex;
+        flex-direction: column;
+        gap: 3.2em;
+        & li {
+            & a, summary, .forms-menu button {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+                width: 100%;
+                font-size: .9rem;
+                font-weight: normal;
+                letter-spacing: .09rem;
+                font-family: "Sansita Swashed";
+                cursor: pointer;
+                list-style-type: none;
+                & svg { width: 30px; height: 30px; fill: var(--primary-color); }
+            }
+            & summary {
+                position: relative;
+                /* margin-bottom: 1.2rem; */
+                &::after {
+                    content: '➕';
+                    color: #007BFF;
+                    font-size: 1.2em;
+                    transition: transform 0.2s ease;
+                }
+            }
+            & details[open] summary::after {
+                content: "➖";
+                transform: rotate(0deg);
+            }
+            & details a, .forms-menu button {
+                margin-top: 1.2rem;
+                color: #000;
+                &:hover { color: #6d6868; }
+                &:active { transform: scale(90%); transition: all .05s ease; }
+            }
+        }
+    }
+}
 
+/* SLOT CONTAINER */
+.admin-slot { grid-area: main; }
+
+/* SLOT - DASHBOARD */
+.dashboard-content {
+    min-height: 100%;
+    min-width: 100%;
+    background-image: url("../../public/imgs/downloads/240_F_909214144_1Gzj10bZSrVAx6m86DtIpkYlFBWqZDYR.jpg ");
+    background-size: auto;
+    background-position: 5% bottom;
+    background-repeat: no-repeat;
+    & h2 {
+        font-family: 'Sansita Swashed';
+        font-size: 2.3rem;
+        text-align: center;
+        & svg {
+            width: 30px;
+            height: 30px;
+        }
+    }
+    /* graficas */
+    & .charts {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+        grid-template-rows: repeat(auto-fill, minmax(1fr, 1fr));
+        padding: 1em;
+        justify-items: center;
+        align-items: end;
+        & div { width: 90%; }
+    }
+}
+
+/* SLOT - MENU */
+.menu-form-container {
+    min-width: 100%;
+    /* min-height: 100%; */
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 2rem 2rem 4rem 2rem;
+    & h2, h3 {
+        font-family: 'Sansita Swashed';
+        font-size: 3rem;
+        text-align: center;
+    }
+    & form {
+        font-family: 'Montserrat';
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        & .drop-zone {
+            border: 2px dashed #007bff;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            & .dragover {
+                background-color: #e9ecef;
+                border-color: #0056b3;
+            }
+            & p {
+                margin: 0;
+                color: #6c757d;
+                font-size: 16px;
+            }
+            &:hover { background-color: #f8f9fa; }
+        }
+        & .file-info {
+            color: #a8aaaa;
+            font-style: italic;
+            font-weight: bold;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            text-wrap: no-wrap;
+            text-overflow: ellipsis;
+            & svg { fill: var(--green); min-width: 30px; min-height: 30px; max-width: 30px; max-height: 30px;}
+        }
+        & button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: .2rem;
+            display: flex;
+            font-family: 'Montserrat Alternates';
+            text-transform: uppercase;
+            justify-content: center;
+            font-size: 1.2rem;
+            gap: 2rem;
+            align-items: center;
+            transition: .2s ease;
+            & svg { fill: white; }
+            &:hover {
+                background-color: var(--secondary-color);
+            }
+        }
+    }
+}
+/* ver pdf */
+.pdf-show {
+    padding: 2rem 2rem 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    & .pdf-info {
+        font-family: 'Montserrat';
+        display: flex;
+        flex-direction: column;
+        gap: .7rem;
+        & div {
+            justify-content: space-between;
+            display: flex;
+            /* background-color: #e6991570; */
+            border: 2.3px dashed #1a1408;
+            border-radius: .4rem;
+            padding: .2rem 1rem;
+            color: #000000;
+            font-weight: bold;
+            & p {
+                font-size: 1.1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: .5rem;
+                & svg { fill: #e69915; height: 20px; }
+            }
+            & span { font-weight: normal; font-family: 'Sansita Swashed'; text-align: end; padding-inline-end: .6rem; }
+        }
+    }
+}
+/* update section ver menu */
+.pdf-view {
+    min-width: 90%;
+    min-height: 100vh;
+    & iframe {
+        border-radius: 1rem;
+        margin: auto;
+        min-width: 100%;
+        min-height: inherit;
+    }
+}
+
+
+/* M E D I A     Q U E R I E S   A D M I N I S T R A D O R  */
 /* media querie dashboard */
 @media (max-width:900px) {
     .admin-home {
@@ -414,7 +441,7 @@
     }
 }
 /* menu navbar */
-& .hb-menu {
+.hb-menu {
     margin-inline-start: 1rem;
     cursor: pointer;
     & svg {
@@ -423,7 +450,7 @@
     }
 }
 /* nombre navbar */
-& .name-logo {
+.name-logo {
     width: max-content;
     border-radius: 50%;
     object-fit: contain;
@@ -609,6 +636,8 @@
         text-align: center;
         letter-spacing: .08rem;
         font-weight: 500;
+        padding: .2rem 1rem;
+        color: #111;
         background-color: #11111152;
     }
 }
@@ -632,7 +661,7 @@
     }
 }
 /* login form */
-form {
+.login-singup-forms {
     width: 30%;
     display: flex;
     flex-direction: column;
@@ -762,6 +791,7 @@ form {
 
 
 /* M E D I A     Q U E R I E S     U S U A R I O S */
+/* dispositivos pequeños */
 @media (max-width:639px) {
     /* HEADER - NAVBAR */
     .name-logo h1 {
@@ -790,7 +820,6 @@ form {
         background-color: #e69915ad;
         font-size: .82rem;
         padding: .5rem;
-
     }
 
     /* FOOTER */
@@ -840,8 +869,40 @@ form {
         }
     }
 
+    /* LOGIN */
+    .login-container form {
+        width: 70%;
+    }
+    .singup-access a {
+        width: 70%;
+        font-size: 1.1rem;
+    }
+
 }
 
+/* dispositivos medianos */
+@media (min-width:640px) and (max-width:1024px) {
+    /* OPTIONS LIST INDEX  */
+    .home-container .options-list {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        height: calc(100vh - 89px);
+    }
+    .options-list .option-name {
+        padding: 0 1em;
+        width: 51%;
+    }
+
+    /* LOGIN */
+    .login-container {
+        gap: 6rem;
+        & form {
+            width: 70%;
+            gap: 8.7rem;
+        }
+    }
+    .singup-access a { width: 70%; }
+}
 
 
 
