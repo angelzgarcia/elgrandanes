@@ -51,8 +51,5 @@
         </div>
     </div>
 
-    <script>
-
-    </script>
 </x-layouts.user-layout>
 

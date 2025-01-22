@@ -2,7 +2,7 @@
 
 <x-layouts.admin-layout>
     <div class="dashboard-content">
-        <h2 class="balance flex my-4 flex-row text-center items-center gap-3 justify-center font-black text-2xl tracking-widest">
+        <h2 class="balance flex my-4 text-gray-800 flex-row text-center items-center gap-3 justify-center font-black text-2xl tracking-widest">
             Balance
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="undefined"><path d="M320-414v-306h120v306l-60-56-60 56Zm200 60v-526h120v406L520-354ZM120-216v-344h120v224L120-216Zm0 98 258-258 142 122 224-224h-64v-80h200v200h-80v-64L524-146 382-268 232-118H120Z"/></svg>
         </h2>

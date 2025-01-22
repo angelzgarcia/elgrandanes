@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservations', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idEvento')
-                ->constrained('events', 'id')
-                ->onDelete('cascade');
-            $table->foreignId('idCodigoReservacion')
-                ->constrained('reservations_codes', 'id')
-                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reservations');
+        Schema::dropIfExists('categories');
     }
 };

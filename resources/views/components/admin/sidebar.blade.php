@@ -109,7 +109,7 @@
                 </li>
                 {{-- CERRAR SESION --}}
                 <li>
-                    <form class="forms-menu" id="logout-form" action="{{ route('logout') }}" method="POST" style="display: flex; justify-content: space-between; width: 100%;">
+                    <form class="forms-menu-logout" id="logout-form" action="{{ route('logout') }}" method="POST" style="display: flex; justify-content: space-between; width: 100%;">
                         @csrf
                         <button type="submit" class="flex flex-row justify-between w-full !font-black">
                             Cerrar sesión

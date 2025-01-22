@@ -33,7 +33,7 @@
         <div class="location">
             <h3>Encuentranos en</h3>
             <div id="map"></div>
-            <p class="capitalize">
+            <p class="address capitalize">
                 Calle flor esquina 4ta avenida, col Benito Juarez, Nezahualcóyotl, Mexico
             </p>
         </div>

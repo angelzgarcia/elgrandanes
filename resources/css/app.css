@@ -85,7 +85,7 @@
 }
 
 /*  S W E E T     A L E R T S    S T Y L E S  */
-.colored-toast.swal2-icon-success { background-color: #a5dc86 !important; }
+.colored-toast.swal2-icon-success { background-color: #9cd37d !important; }
 .colored-toast.swal2-icon-warning { background-color: #dbd815 !important; }
 .colored-toast.swal2-icon-error { background-color: var(--redG) !important; }
 .colored-toast.swal2-icon-info { background-color: #3fc3ee !important; }
@@ -116,8 +116,9 @@
 /* HEADER - NAVBAR */
 .admin-header {
     grid-area: nav;
-    background-color: #00af9a;
-    background-color: var(--primary-color);
+    /* background-color: #00af9a; */
+    /* background-color: var(--primary-color); */
+    background-color: #dda749;
     /* color: white; */
     display: flex;
     /* nav-bar */
@@ -133,7 +134,7 @@
             gap: 1rem;
             & .admin-avatar {
                 width: 65px;
-                border: 5px solid var(--secondary-color);
+                border: 5px solid var(--primary-color);
                 overflow: hidden;
                 background-color: #fff;
                 border-radius: 50%;
@@ -150,12 +151,12 @@
             background-color: #fff;
             border-radius: 50%;
             object-position: top;
-            /* box-shadow: 0 0 .5rem .1rem gray; */
+            box-shadow: .2rem -.5rem .4rem .6rem white;
             margin: 0 2rem;
             transition: .32s all ease;
             position: relative;
             & a img { min-width: 150px; min-height: 150px; position: absolute; top: -35px; left: -25px; }
-            &:hover { transform: rotate(350deg); }
+            &:hover { transform: rotate(-350deg); }
             &:active { transform: scale(82%); transition: .06s ease; }
         }
     }
@@ -215,8 +216,9 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
                 font-family: "Sansita Swashed";
                 cursor: pointer;
                 list-style-type: none;
-                & svg { width: 30px; height: 30px; fill: var(--primary-color); }
+                &:hover { color: #6d6868; }
             }
+            & svg { width: 30px; height: 30px; fill: var(--primary-color); }
             & summary {
                 position: relative;
                 /* margin-bottom: 1.2rem; */
@@ -234,8 +236,15 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
             & details a, .forms-menu button {
                 margin-top: 1.2rem;
                 color: #000;
-                &:hover { color: #6d6868; }
                 &:active { transform: scale(90%); transition: all .05s ease; }
+            }
+            & details a, .forms-menu > button {
+                font-size: .8rem;
+                padding-left: .5rem;
+                & svg {
+                    width: 22px;
+                    height: 22px;
+                }
             }
         }
     }
@@ -259,6 +268,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         & svg {
             width: 30px;
             height: 30px;
+            fill: var(--primary-color);
         }
     }
     /* graficas */
@@ -478,7 +488,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     &:hover { transform: rotate(350deg); }
     &:active { transform: scale(90%); }
 }
-& .icons-functions {
+.icons-functions {
     margin-inline-end: 1rem;
     & svg {
         width: 35px;
@@ -630,7 +640,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         width: 100%;
         min-height: 100vh;
     }
-    & p {
+    & .address {
         display: flex;
         font-family: 'Montserrat';
         text-align: center;
@@ -724,7 +734,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
 }
 
 /* SLOT -> SINGUP */
-
+/* -------↑↑↑-------- */
 
 /* SLOT -> MENU DEL BAR */
 .menu-container {
@@ -735,7 +745,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         padding: .5rem;
         text-shadow: 0 0 .2rem white;
         background-color: var(--deepblack);
-        color: wheat;
+        color: rgb(243, 230, 205);
     }
     & .menu-view {
         min-width: 100%;
@@ -786,6 +796,106 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
                 fill: white;
             }
         }
+    }
+}
+
+/* SLOT - UPCOMING EVENTS */
+.upcoming-events-section {
+    width: 100%;
+    min-height: calc(100vh - 110px - 1rem);
+    max-height: calc(100vh - 110px - 1rem);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1rem .5rem;
+    gap: 1rem;
+}
+.img-upc-event, .data-upc-event, .list-of-events {
+    max-height: inherit;
+    scrollbar-width: thin;
+    overflow-y: scroll;
+    scrollbar-color: rgba(0, 0, 0, 0.185) white;
+}
+.img-upc-event {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    border-radius: .9rem;
+    & img {
+        border-radius: .9rem;
+        object-fit: contain;
+        object-position: center;
+    }
+}
+.data-upc-event {
+    padding: 0 .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    & h2 {
+        font-family: 'Montserrat Alternates';
+        font-size: 2rem;
+        text-align: center;
+    }
+    & .details, p, span { display: flex; }
+    & .details {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        gap: 2rem;
+        & p, svg {
+            justify-content: space-between;
+            align-items: center;
+        }
+        & span {
+            gap: .7rem;
+            text-align: end;
+            &:first-of-type {
+                text-align: start;
+            }
+        }
+        & svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--deepblack);
+        }
+    }
+}
+.list-of-events {
+    padding: 0 .5rem .5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    & h3 {
+        font-family: 'Sansita Swashed';
+        font-size: 1rem;
+        text-align: center;
+        padding-block-start: .5rem;
+    }
+    & .upcoming-list-events, .list-fixed-events {
+        flex-basis: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+.event {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 15vh;
+    & .event-img {
+        flex-basis: 50%;
+        border-radius: .2rem;
+        & img {
+            border-radius: .2rem;
+            width: 100%;
+            height: 15vh;
+            object-fit: cover;
+            object-position: top;
+        }
+    }
+    & p {
+        flex-basis: 50%;
     }
 }
 

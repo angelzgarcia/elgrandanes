@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('fecha');
             $table->string('horario');
-            $table->float('costo');
+            $table->float('costo_preventa');
+            $table->float('costo_taquilla');
             // $table->string('integrantes');
             $table->mediumText('genero');
             $table->string('facebook') -> nullable();
