@@ -81,6 +81,10 @@
     dropZone.addEventListener('drop', e => {
         const file = e.dataTransfer.files[0];
         handleFile(file);
+
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+        fileInput.files = dataTransfer.files;
     });
 
     fileInput.addEventListener('change', e => {

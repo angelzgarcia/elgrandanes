@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
@@ -77,7 +78,13 @@ class MenuController extends Controller
     public function update(Request $request, Menu $menu)
     {
         $menuExists = Menu::exists();
+        $file = "files/$menu->nombre_original";
+
         if (!$menuExists) return redirect() -> route('dashboard');
+        if (!Storage::disk('public') -> exists($file))
+            return redirect() -> route('menu.edit', compact('menu')) -> with('error', 'Contacta con soporte, ¡ocurrió un error!');
+
+        Storage::disk('public') -> delete($file);
 
         $request -> validate([
             'menu' => 'required|file|mimes:pdf|max:51200'
@@ -99,6 +106,13 @@ class MenuController extends Controller
     public function destroy($id)
     {
         $menu = Menu::find($id);
+        $file = "files/$menu->nombre_original";
+
+        if (!Storage::disk('public') -> exists($file))
+            return back() -> with('error', 'Contacta con soporte, ¡ocurrió un error!');
+
+        Storage::disk('public')
+                -> delete($file);
         $menu -> delete();
 
         return redirect() -> route('dashboard');

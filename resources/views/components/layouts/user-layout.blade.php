@@ -15,12 +15,38 @@
     <script src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API_KEY_A')}}&loading=async" defer></script>
 </head>
 <body class="users-home">
+    <div id="preloader">
+        <div class="spinner">
+            <div class="hole"></div>
+        </div>
+        <h1>EL GRAN DANÉS</h1>
+    </div>
+
     <x-users.header />
 
-    <main class="users-slot">
+    <main class="users-slot" id="users-slot">
         {{ $slot }}
     </main>
 
     <x-users.footer />
+
+    {{-- preload --}}
+    <script>
+        const preloaderTimeout = 700;
+        const body = document.documentElement;
+        body.style.scrollbarWidth = "none";
+
+        window.addEventListener("load", function () {
+            const preloader = document.getElementById("preloader");
+
+            setTimeout(() => {
+                preloader.style.opacity = "0";
+                body.style.scrollbarWidth = "thin";
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                }, 500);
+            }, preloaderTimeout);
+        });
+    </script>
 </body>
 </html>

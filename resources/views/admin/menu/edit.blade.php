@@ -24,6 +24,29 @@
             <iframe src="{{ files_url($menu->nombre_original) }}"></iframe>
         </div>
     </div>
+    @if (session('error'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timerProgressBar: true,
+                iconColor: 'white',
+                customClass: {
+                    popup: 'colored-toast',
+                },
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                icon: "success",
+                title: '{{ session('error') }}',
+                timer: 3000
+            });
+        </script>
+    @endif
 </x-layouts.admin-layout>
 
 <script>

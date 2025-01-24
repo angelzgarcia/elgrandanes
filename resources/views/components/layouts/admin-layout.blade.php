@@ -14,6 +14,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="admin-home">
+    <div id="preloader">
+        <div class="spinner">
+            <div class="hole"></div>
+        </div>
+        <h1>EL GRAN DANÉS</h1>
+    </div>
+
     <x-admin.header />
 
     <x-admin.sidebar />
@@ -21,6 +28,25 @@
     <main class="admin-slot">
         {{ $slot }}
     </main>
+
+    {{-- preload --}}
+    <script>
+        const preloaderTimeout = 200;
+        const body = document.documentElement;
+        body.style.scrollbarWidth = "none";
+
+        window.addEventListener("load", function () {
+            const preloader = document.getElementById("preloader");
+
+            setTimeout(() => {
+                preloader.style.opacity = "0";
+                body.style.scrollbarWidth = "thin";
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                }, 500);
+            }, preloaderTimeout);
+        });
+    </script>
 
     @stack('js')
 </body>
