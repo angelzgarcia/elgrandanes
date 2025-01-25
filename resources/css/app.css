@@ -967,6 +967,21 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         font-size: 2rem;
         text-align: center;
     }
+    & a {
+        width: 100%;
+        background-color: var(--secondary-color);
+        color: white;
+        text-align: center;
+        padding: .4rem 0;
+        text-shadow: 0 0 .1rem white;
+        font-weight: bolder;
+        text-transform: uppercase;
+        font-family: 'Montserrat Alternates';
+        word-spacing: .5rem;
+        &:hover {
+            background-color: var(--primary-color);
+        }
+    }
     & .details, p, span { display: flex; }
     & .details {
         flex-direction: column;
@@ -1027,6 +1042,15 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     }
     & p {
         flex-basis: 50%;
+    }
+}
+.no-events {
+    justify-content: center;
+    align-items: center;
+    & svg { fill: rgba(205, 134, 63, 0.438) !important; }
+    & svg:first-of-type, svg:last-of-type {
+        width: 20%;
+        height: 20%;
     }
 }
 

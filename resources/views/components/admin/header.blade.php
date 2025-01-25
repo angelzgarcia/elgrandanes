@@ -6,7 +6,11 @@
                 <img src="{{ img_a_url('avatar-m5.jpg') }}" alt="">
             </div>
             <p class="admin-name text-ellipsis w-48 text-black overflow-hidden whitespace-nowrap italic">
-                raul garcía osorio
+                @if (Auth::user()->idRol === 2)
+                    {{ Auth::user()->name . ' ' . Auth::user()->lastname }}
+                @else
+                    Administrator
+                @endif
             </p>
         </div>
 

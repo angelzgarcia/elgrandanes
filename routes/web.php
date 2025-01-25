@@ -35,6 +35,7 @@ Route::prefix('')
             -> controller(UserEventsController::class)
             -> group(function() {
                 Route::get('/upcoming', 'upcomingEventsIndex') -> name('upcoming-events.index');
+                Route::get('/upcoming/{slug}', 'updateCurrentEvent') -> name('events.updateCurrentEvent');
                 Route::get('/previous', 'previousEventsIndex') -> name('previous-events.index');
             });
     });
@@ -93,7 +94,7 @@ Route::prefix('/admin')
                 Route::get('', 'index') -> name('admin.events.index');
                 Route::get('/create', 'create') -> name('admin.events.create');
                 Route::post('/store', 'store') -> name('admin.events.store');
-                Route::get('/{event}', 'show') -> name('admin.events.show');
+                Route::get('/{event:slug}', 'show') -> name('admin.events.show');
                 Route::get('{event}/edit', 'edit') -> name('admin.events.edit');
                 Route::put('/{menu}', 'update') -> name('admin.events.update');
                 Route::delete('/{id}', 'destroy') -> name('admin.events.destroy');

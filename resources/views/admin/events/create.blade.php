@@ -22,10 +22,10 @@
             {{-- genero musical --}}
             <fieldset class="flex flex-col">
                 <legend>Género musical</legend>
-                @error('musical-genre')
+                @error('musical_genre')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
-                <select name="musical-genre" id="musical-genre">
+                <select name="musical_genre" id="musical_genre">
                     <option value="" disabled selected></option>
                     <optgroup label="Populares">
                         <option value="pop">Pop</option>
@@ -56,38 +56,38 @@
             {{-- horario --}}
             <fieldset class="flex flex-col">
                 <legend>Horario</legend>
-                @error('start-event')
+                @error('start_event')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
                 <div>
                     <span>Inicio del evento</span>
-                    <input type="time" name="start-event" id="start-event" value="{{old('start-event')}}">
+                    <input type="time" name="start_event" id="start_event" value="{{old('start_event')}}">
                 </div>
-                @error('end-event')
+                @error('end_event')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
                 <div>
                     <span>Término o cierre del evento</span>
-                    <input type="time" name="end-event" id="end-event" value="{{old('end-event')}}">
+                    <input type="time" name="end_event" id="end_event" value="{{old('end_event')}}">
                 </div>
             </fieldset>
             {{-- costo --}}
             <fieldset class="flex flex-col">
                 <legend>Costo del acceso</legend>
                 <strong><small>Si la entrada es libre, deje los siguientes campos vacíos.</small></strong>
-                @error('pre-sale-cost')
+                @error('pre_sale_cost')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
                 <div>
                     <span>Pre-venta</span>
-                    <input type="text" name="pre-sale-cost" id="pre-sale-cost" value="{{old('pre-sale-cost')}}">
+                    <input type="text" name="pre_sale_cost" id="pre_sale_cost" value="{{old('pre_sale_cost')}}">
                 </div>
-                @error('ticket-cost')
+                @error('ticket_cost')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
                 <div>
                     <span>Taquilla</span>
-                    <input type="text" name="ticket-cost" id="ticket-cost" value="{{old('ticket-cost')}}">
+                    <input type="text" name="ticket_cost" id="ticket_cost" value="{{old('ticket_cost')}}">
                 </div>
             </fieldset>
             {{-- reservacion --}}
@@ -103,6 +103,21 @@
                 <div>
                     <span>No</span>
                     <input type="radio" name="reservation" value="no" {{ old('reservation') === 'no' ? 'checked' : '' }}>
+                </div>
+            </fieldset>
+            {{-- topo de evento --}}
+            <fieldset class="flex flex-col">
+                <legend>Tipo de evento</legend>
+                @error('event_type')
+                    <div class="text-red-500">{{ $message }}</div>
+                @enderror
+                <div>
+                    <span>Fijo</span>
+                    <input type="radio" name="event_type" value="fijo" {{ old('event_type') === 'fijo' ? 'checked' : '' }}>
+                </div>
+                <div>
+                    <span>Ocacional</span>
+                    <input type="radio" name="event_type" value="ocacional" {{ old('event_type') === 'ocacional' ? 'checked' : '' }}>
                 </div>
             </fieldset>
             {{-- cupos --}}
@@ -141,10 +156,10 @@
             {{-- imagen --}}
             <fieldset class="flex flex-col">
                 <legend>Imagen</legend>
-                @error('image-event')
+                @error('image_event')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
-                <input type="file" name="image-event" id="image-event" accept="image/png,jpg,jpeg">
+                <input type="file" name="image_event" id="image_event" accept="image/jpg,png,jpeg">
             </fieldset>
 
             {{-- submit --}}

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('fecha');
             $table->string('horario');
+            $table->string('slug')->unique(); 
             $table->float('costo_preventa');
             $table->float('costo_taquilla');
             // $table->string('integrantes');
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->string('youtube') -> nullable();
             $table->boolean('reservacion') -> default(false);
             $table->tinyText('cupos') -> nullable();
+            $table->enum('tipo_evento', ['fijo', 'ocacional']);
             $table->string('imagen');
             $table->timestamps();
         });
