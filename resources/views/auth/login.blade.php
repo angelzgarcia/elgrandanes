@@ -7,6 +7,9 @@
         <form action="{{ route('login') }}" method="post" autocomplete="off" class="login-singup-forms">
             @csrf
 
+            @error('error')
+                <div class="text-red-500">{{ $message }}</div>
+            @enderror
             <fieldset class="flex flex-col">
                 <legend>Correo electrónico</legend>
                 <input type="text" name="email" id="email" value="{{old('email')}}"">

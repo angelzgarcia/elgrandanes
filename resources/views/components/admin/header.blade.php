@@ -14,8 +14,8 @@
             </p>
         </div>
 
-        <div class="dbt text-[#fff] font-black text-5xl uppercase text-center">
-            DASHBOARD ADMIN
+        <div class="dbt w-full text-start text-[#fff] font-black text-5xl uppercase">
+            DASHBOARD
         </div>
 
         <div class="logo shadow-xl">

@@ -147,6 +147,11 @@
     }
 }
 
+.paginator {
+    width: 100%;
+    padding: 1rem;
+    background-color: #000;
+}
 
 
 /* A D M I N     S T Y L E S */
@@ -188,13 +193,13 @@
             gap: 1rem;
             & .admin-avatar {
                 width: 65px;
-                border: 5px solid var(--primary-color);
+                border: 5px solid wheat;
                 overflow: hidden;
                 background-color: #fff;
                 border-radius: 50%;
                 & img { width: 100%; height: 100%;}
             }
-            & p { font-family: 'Montserrat Alternates'; }
+            & p { font-family: 'Montserrat Alternates'; text-align: start; color: #fff; }
         }
         & .dbt { font-family: 'Montserrat Alternates'; }
         & .logo {
@@ -205,7 +210,7 @@
             background-color: #fff;
             border-radius: 50%;
             object-position: top;
-            box-shadow: .2rem -.5rem .4rem .6rem white;
+            box-shadow: .2rem -.5rem .6rem .6rem white;
             margin: 0 2rem;
             transition: .32s all ease;
             position: relative;
@@ -311,14 +316,21 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
 .dashboard-content {
     min-height: 100%;
     min-width: 100%;
-    background-image: url("../../public/imgs/downloads/240_F_909214185_P63C71h3GfGtKCbARkOKrg6Q1AN60JY4.jpg ");
+    background-image: url("../../public/imgs/downloads/240_F_838123000_agubVmZQ9KZ9VysTXOIRyBeXjPGACZ5E__1_-removebg-preview.png ");
     background-size: auto;
     background-position: 5% bottom;
     background-repeat: no-repeat;
     & h2 {
-        font-family: 'Sansita Swashed';
+        font-family: 'Montserrat Alternates';
         font-size: 2.3rem;
         text-align: center;
+        background-color: #000;
+        width: 85%;
+        padding: .4rem 0;
+        border-radius: 4rem;
+        text-shadow: 0 0 .1rem white;
+        margin: 1rem auto;
+        color: white;
         & svg {
             width: 30px;
             height: 30px;
@@ -330,10 +342,14 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
         /* grid-template-rows: repeat(auto-fill, minmax(1fr, 1fr)); */
-        padding: 1em;
-        justify-items: center;
-        align-items: end;
-        & div { width: 90%; }
+        padding: 1em 4rem;
+        justify-content: space-between;
+        /* justify-items: center; */
+        align-items: start;
+        /* background-color: #000; */
+        min-height: max-content;
+        gap: 1.5rem;
+        & div { height: 100%; width: 100%; display: flex; justify-content: center; align-items: start; }
     }
 }
 
@@ -450,7 +466,8 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
 }
 
 /* SLOT - EVENTOS */
-.events-form-container {
+/* crear eventp */
+.create-form-container {
     width: 100%;
     height: 100%;
     padding: 1rem;
@@ -461,7 +478,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         text-transform: uppercase;
     }
 
-    & .events-form {
+    & .create-form {
         padding: 2rem;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -525,7 +542,244 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         }
     }
 }
+/* grid eventos */
+.headers-crud-grid {
+    background-color: var(--primary-color);
+    color: white;
+    font-family: 'Montserrat Alternates';
+    text-transform: uppercase;
+    font-size: .8rem;
+    border-radius: .2rem;
+    display: flex;
+    font-weight: bold;
+}
+.crud-grid-table-container {
+    width: 100%;
+    min-height: 100%;
+    padding: 1rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    & h2 {
+        text-align: center;
+        padding: .2rem 0;
+        font-family: 'Montserrat Alternates';
+        font-size: 1.5rem;
+        background-color: #000;
+        color: #fff;
+        font-style: italic;
+        text-shadow: 0 0 .1rem white;
+        margin-block-start: .5rem;
+        border-radius: 5rem;
+        letter-spacing: .2rem;
+        word-spacing: .2rem;
+        text-transform: uppercase;
+    }
+    & .headers-crud-grid {
+        display: flex;
+        gap: 1rem;
+    }
+    & .row-header-crud {
+        display: grid;
+        grid-template-columns: 1fr 240px;
+        grid-template-rows: 50px;
+        /* padding: .3rem 0; */
+        width: 100%;
+        gap: 0 2rem;
+    }
+    & .headers-crud {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        padding: 0 1rem;
+        & .header-event {
+            display: flex;
+            align-items: center;
+            text-align: start;
+            overflow: hidden;
+            height: 100%;
+            min-width: 100px;
+            max-width: 110px;
+            text-overflow: ellipsis;
+        }
+    }
+    & .white-space {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    & .admin-crud-row-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    & .crud-grid {
+        display: grid;
+        grid-template-columns: 1fr 240px;
+        grid-template-rows: 50px;
+        justify-content: space-between;
+        width: 100%;
+        gap: 0 2rem;
+        align-items: stretch;
+    }
+    & .crud-grid-data a, .crud-action-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+    }
+    & .crud-grid-data a {
+        border: 2px dotted var(--primary-color);
+        padding: 0 1rem;
+        & p {
+            color: #000;
+            font-family: 'Sansita Swashed';
+            display: flex;
+            text-transform: capitalize;
+            align-items: center;
+            height: 100%;
+            text-align: start;
+            min-width: 100px;
+            max-width: 110px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        &:hover {
+            background-color: #c0b3b31a;
+            border-color: transparent;
+            box-shadow: 0 .3rem .2rem 0 rgba(128, 128, 128, 0.171);
+        }
+    }
+    & .crud-action-buttons {
+        justify-content: space-evenly;
+        gap: 2rem;
+    }
+    & .edit-action, .destroy-action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        color: white;
+        border-radius: .15rem;
+        box-shadow: 0 .2rem .1rem 0 rgba(128, 128, 128, 0.527);
+        & a, button {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        & svg {
+            fill: white;
+        }
+        &:hover {
+            filter: invert();
+        }
+    }
+    & .edit-action {
+        background-color: var(--bluedots);
+    }
+    & .destroy-action {
+        background-color: var(--secondary-color);
+    }
+}
+/* ver evento */
+.admin-event-show-container {
+    min-height: 100%;
+    padding: 1rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    & a {
+        position: absolute;
+        left: 50px;
+        top: 15px;
+        height: 50px;
+        width: 52px;
+        box-shadow: 0 .25rem .1rem 0 rgba(128, 128, 128, 0.733);
+        background-color: rgba(238, 233, 233, 0.623);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: .1rem;
+        text-align: center;
+        z-index: 10;
+        & svg {
+            fill: gray;
+            width: 60%;
+            height: 60%;
+            font-weight: bolder;
+        }
+        &:hover {
+            filter: contrast(90%);
+            transform: scale(90%);
+        }
+    }
+    & h2 {
+        text-align: center;
+        font-family: 'Montserrat Alternates';
+        font-size: 2rem;
+        text-transform: uppercase;
+        /* padding: 1rem 0; */
+    }
+    & .admin-event-details {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 0 1.5rem;
+        & .event-detail-row {
+            display: flex;
+            justify-content: space-between;
+            text-transform: capitalize;
+            & p:first-of-type {
+                color: #000;
+            }
+        }
+    }
+    & .img-event-details {
+        width: 80%;
+        height: 80%;
+        margin: auto;
+        & img {
+            width: 50%;
+            height: 50%;
+            margin: auto;
+            object-fit: contain;
+            object-position: 0%;
+            border-radius: 1rem;
+        }
+    }
+}
 
+/* SLOT - CATEGORIAS DE GENEROS MUSICALES */
+.create-category-container {
+    display: flex;
+    flex-direction: column;
+    place-self: start;
+    gap: 2rem;
+    & h2 { font-size: 2rem; }
+    & .create-category {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        & fieldset {
+            height: max-content;
+            width: 100%;
+        }
+        & .tag-disabled {
+            cursor: not-allowed;
+
+        }
+    }
+}
+
+
+/* SLOT - GENEROS MUSICALES */
 
 /* M E D I A     Q U E R I E S   A D M I N I S T R A D O R  */
 /* media querie dashboard */

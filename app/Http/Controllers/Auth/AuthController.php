@@ -13,22 +13,33 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
+        // if (Auth::check()) return redirect() -> route('home');
+
         return view('auth.login');
     }
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        $credentials = $request->validate(rules: [
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard');
+
+            switch (Auth::user()->idRol) {
+                case 2:
+                    return redirect()->route('dashboard');
+                case 1:
+                    return redirect()->route('dashboard');
+                default:
+                    Auth::logout();
+                    return back()-> withErrors(['error' => 'No tienes permisos para acceder.']) -> withInput();
+            }
         }
 
-        return back()->with('error', 'Credenciales incorrectas.');
+        return back()->withErrors(['error' => 'Credenciales incorrectas.']) -> withInput();
     }
 
     public function logout(Request $request)

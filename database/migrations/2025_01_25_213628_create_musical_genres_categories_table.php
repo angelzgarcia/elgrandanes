@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('musical_genres', function (Blueprint $table) {
+        Schema::create('musical_genres_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('categoria_musical', '30') -> unique();
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('musical_genres');
+        Schema::dropIfExists('musical_genres_categories');
     }
 };

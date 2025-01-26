@@ -17,7 +17,7 @@ class EventsController extends Controller
     public function index()
     {
         $events = Event::orderBy('id', 'desc')
-                        -> paginate(perPage:8);
+                        -> paginate(perPage:8, pageName: 'eventsPage');
 
         return view('admin.events.index', compact('events'));
     }
@@ -68,23 +68,31 @@ class EventsController extends Controller
 
         if (!$event) return back()->withErrors(['error' => 'No se pudo crear el evento']);
 
-        return redirect() -> route('admin.events.show', compact('event')) -> with('success', '¡Evento creado exitosamente!');
+        $slug = $event -> slug;
+
+        return redirect() -> route('admin.events.show', compact('slug')) -> with('success', '¡Evento creado exitosamente!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Event $event)
+    public function show($slug)
     {
+        $event = Event::where('slug', $slug) -> first();
+
         return view('admin.events.show', compact('event'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($slug)
     {
-        //
+        $event = Event::where('slug', $slug) -> first();
+
+        if (!$event -> exists()) return redirect() -> route('admin.events.index');
+
+        return view('admin.events.edit', compact('event'));
     }
 
     /**

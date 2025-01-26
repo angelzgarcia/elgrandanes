@@ -1,19 +1,19 @@
 
 
-<x-layouts.admin-layout titulo='El Gran Danés Café - Bar | Admin | Crear evento'>
+<x-layouts.admin-layout titulo='El Gran Danés Café-Bar | Admin | Crear evento'>
 
-    <div class="events-form-container">
+    <div class="create-form-container">
 
         <h2 class="font-black">
             Agregar evento
         </h2>
 
-        <form action="{{ route('admin.events.store') }}" method="post" class="events-form" enctype="multipart/form-data">
+        <form class="create-form" action="{{ route('admin.events.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             {{-- fecha --}}
             <fieldset class="flex flex-col">
-                <legend>Fecha del evento</legend>
+                <legend>Fecha del evento *</legend>
                 @error('date')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
@@ -21,7 +21,7 @@
             </fieldset>
             {{-- genero musical --}}
             <fieldset class="flex flex-col">
-                <legend>Género musical</legend>
+                <legend>Género musical *</legend>
                 @error('musical_genre')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
@@ -55,7 +55,7 @@
             </fieldset>
             {{-- horario --}}
             <fieldset class="flex flex-col">
-                <legend>Horario</legend>
+                <legend>Horario *</legend>
                 @error('start_event')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
@@ -92,7 +92,7 @@
             </fieldset>
             {{-- reservacion --}}
             <fieldset class="flex flex-col">
-                <legend>Reservación</legend>
+                <legend>Reservación *</legend>
                 @error('reservation')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
@@ -107,7 +107,7 @@
             </fieldset>
             {{-- topo de evento --}}
             <fieldset class="flex flex-col">
-                <legend>Tipo de evento</legend>
+                <legend>Tipo de evento *</legend>
                 @error('event_type')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
@@ -155,7 +155,7 @@
             </fieldset>
             {{-- imagen --}}
             <fieldset class="flex flex-col">
-                <legend>Imagen</legend>
+                <legend>Imagen *</legend>
                 @error('image_event')
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror

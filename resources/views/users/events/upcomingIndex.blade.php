@@ -128,7 +128,7 @@
                             <div class="event">
                                 <div class="event-img">
                                     <a href="{{ route('events.updateCurrentEvent', $event->slug) }}">
-                                        <img src="{{ img_u_url("events/{$event->imagen}") }}" alt="upcoming-event">
+                                        <img src="{{ img_u_url("events/{$event->imagen}") }}" alt="upcoming-event" loading="lazy">
                                     </a>
                                 </div>
                                 <p>
@@ -160,8 +160,7 @@
                         @endif
                     @endforeach
                 </div>
-
-
+                
             </div>
         </div>
     @endif

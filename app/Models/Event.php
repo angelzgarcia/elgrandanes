@@ -11,20 +11,6 @@ class Event extends Model
     use HasFactory;
 
     protected $talbe = 'events';
-
-    // protected $fillable = [
-    //     'fecha',
-    //     'horario',
-    //     'costo_preventa',
-    //     'costo_taquilla',
-    //     'genero',
-    //     'facebook',
-    //     'instagram',
-    //     'youtube',
-    //     'reservacion',
-    //     'cupos',
-    //     'imagen',
-    // ];
     protected $guarded = [''];
 
     public static function boot()
@@ -34,6 +20,11 @@ class Event extends Model
         static::creating(function($event) {
             $event->slug = Str::slug($event->fecha . ' ' . $event->horario);
         });
+    }
+
+    public function musicalGenre()
+    {
+        return $this -> hasOne(MusicalGenre::class);
     }
 
 }

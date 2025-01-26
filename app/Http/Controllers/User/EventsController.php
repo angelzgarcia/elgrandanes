@@ -14,7 +14,8 @@ class EventsController extends Controller
 {
     public function upcomingEventsIndex()
     {
-        $events = Event::orderBy('fecha', 'asc') -> get();
+        $events = Event::select('fecha', 'horario', 'imagen', 'tipo_evento', 'slug')
+                        -> orderBy('fecha', 'asc') -> get();
 
         if ($events->isEmpty()) return view('users.events.upcomingIndex');
 

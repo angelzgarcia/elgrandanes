@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\EventsController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\MusicalGenreCategoryController;
+use App\Http\Controllers\Admin\MusicalGenreController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\EventsController as UserEventsController;
@@ -23,14 +25,17 @@ Route::get('/storage/files/{filename}', function ($filename) {
 // R U T A S     U S U A R I O S
 Route::prefix('')
     -> group(function() {
+        // H O M E
         Route::get('', function () {
             return view('users.home');
         })-> name('home');
 
+        // M E N  U
         Route::get('/menu', function() {
             return view('users.menu');
         }) -> name('menu');
 
+        // R U T A S      D E     L O S     E V E N T O S
         Route::prefix('/events')
             -> controller(UserEventsController::class)
             -> group(function() {
@@ -38,6 +43,9 @@ Route::prefix('')
                 Route::get('/upcoming/{slug}', 'updateCurrentEvent') -> name('events.updateCurrentEvent');
                 Route::get('/previous', 'previousEventsIndex') -> name('previous-events.index');
             });
+
+        // P E R F I L
+
     });
 
 
@@ -46,7 +54,7 @@ Route::prefix('')
 
 // R U T A S    A U T H
 Route::prefix('/auth')
-    -> middleware('guest')
+    -> middleware('authenticated')
     -> controller(AuthController::class)
     -> group(function() {
 
@@ -63,7 +71,7 @@ Route::post('/auth/logout', [AuthController::class, 'logout']) -> name('logout')
 
 //   R U T A S    D E L   A D M I N I S T R A D O R
 Route::prefix('/admin')
-    -> middleware('auth')
+    -> middleware(['auth', 'role:2'])
     -> group(function() {
 
         Route::get('/dashboard',[ HomeController::class, 'index']) -> name('dashboard');
@@ -94,9 +102,30 @@ Route::prefix('/admin')
                 Route::get('', 'index') -> name('admin.events.index');
                 Route::get('/create', 'create') -> name('admin.events.create');
                 Route::post('/store', 'store') -> name('admin.events.store');
-                Route::get('/{event:slug}', 'show') -> name('admin.events.show');
-                Route::get('{event}/edit', 'edit') -> name('admin.events.edit');
-                Route::put('/{menu}', 'update') -> name('admin.events.update');
+                // Route::get('/{event:slug}', 'show') -> name('admin.events.show');
+                Route::get('/{slug}', 'show') -> name('admin.events.show');
+                Route::get('{slug}/edit', 'edit') -> name('admin.events.edit');
+                Route::put('/{slug}', 'update') -> name('admin.events.update');
                 Route::delete('/{id}', 'destroy') -> name('admin.events.destroy');
+            });
+
+        // C R U D     G E N E R O S     M U S I C A L E S
+        Route::prefix('/music-genre')
+            -> controller(MusicalGenreController::class)
+            -> group(function() {
+                Route::get('', 'index') -> name('admin.music-genre.index');
+                Route::get('/create', 'create') -> name('admin.music-genre.create');
+                Route::post('/store', 'store') -> name('admin.music-genre.store');
+                Route::delete('/{id}', 'destroy') -> name('admin.music-genre.destroy');
+            });
+
+        // C R U D     C A T E G O R I A S     D E    G E N E R O S     M U S I C A L E S
+        Route::prefix('/music-genre-category')
+            -> controller(MusicalGenreCategoryController::class)
+            -> group(function() {
+                Route::get('', 'index') -> name('admin.music-category.index');
+                Route::get('/create', 'create') -> name('admin.music-category.create');
+                Route::post('/store', 'store') -> name('admin.music-category.store');
+                Route::delete('/{id}', 'destroy') -> name('admin.music-category.destroy');
             });
     });
