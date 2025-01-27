@@ -15,9 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         // $middleware->append(RoleMiddleware::class);
         $middleware -> alias ([
-            'role' => RoleMiddleware::class
-        ]);
-        $middleware -> alias ([
+            'role' => RoleMiddleware::class,
             'authenticated' => RedirectIfAuthenticated::class
         ]);
     })

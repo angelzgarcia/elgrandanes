@@ -14,6 +14,6 @@ class MusicalGenre extends Model
         return $this -> hasOne(MusicalGenreCategory::class);
     }
 
-    protected function
+    // protected function
 
 }

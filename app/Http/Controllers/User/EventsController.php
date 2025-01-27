@@ -28,6 +28,11 @@ class EventsController extends Controller
         return view('users.events.upcomingIndex', compact('events', 'currentEvent'));
     }
 
+    public function previousEventsIndex()
+    {
+        return view('users.events.previousIndex');
+    }
+
     public function updateCurrentEvent($slug)
     {
         $currentEvent = Event::where('slug', $slug)->first();
@@ -81,8 +86,4 @@ class EventsController extends Controller
         $event->horario = implode(' - ', $horario);
     }
 
-    public function previousEventsIndex()
-    {
-        return view('users.events.previousIndex');
-    }
 }

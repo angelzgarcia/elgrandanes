@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\MusicalGenreController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\EventsController as UserEventsController;
+use App\Http\Controllers\User\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/storage/files/{filename}', function ($filename) {
@@ -43,9 +44,6 @@ Route::prefix('')
                 Route::get('/upcoming/{slug}', 'updateCurrentEvent') -> name('events.updateCurrentEvent');
                 Route::get('/previous', 'previousEventsIndex') -> name('previous-events.index');
             });
-
-        // P E R F I L
-
     });
 
 
@@ -64,6 +62,23 @@ Route::prefix('/auth')
         Route::post('/login', 'login') -> name('login');
     });
 Route::post('/auth/logout', [AuthController::class, 'logout']) -> name('logout');
+
+
+
+
+
+//    R U T A S       U S U A R I O S      A U T E N  T I C A D O S
+Route::prefix('/profile')
+    -> middleware(['auth', 'role:1'])
+    -> controller(UserProfileController::class)
+    -> group(function() {
+
+        Route::get('/', 'index') -> name('user.profile.index');
+        Route::put('/details/{id}', 'updateProfile') -> name('user.profile-details.update');
+        Route::put('/password/{id}', 'updatePassword') -> name('user.profile-password.update');
+
+    });
+
 
 
 

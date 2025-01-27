@@ -14,7 +14,6 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         // if (Auth::check()) return redirect() -> route('home');
-
         return view('auth.login');
     }
 
@@ -25,14 +24,14 @@ class AuthController extends Controller
             'password' => 'required|min:8',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $request -> has('remember'))) {
             $request->session()->regenerate();
 
             switch (Auth::user()->idRol) {
                 case 2:
                     return redirect()->route('dashboard');
                 case 1:
-                    return redirect()->route('dashboard');
+                    return redirect()->route('user.profile.index');
                 default:
                     Auth::logout();
                     return back()-> withErrors(['error' => 'No tienes permisos para acceder.']) -> withInput();

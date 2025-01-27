@@ -477,68 +477,65 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         font-size: 2.5rem;
         text-transform: uppercase;
     }
+}
+.create-form {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    justify-content: center;
+    gap: 3rem;
 
-    & .create-form {
-        padding: 2rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    & legend {
+        font-weight: bold;
+        font-size: .8rem;
+        color: gray;
+    }
+
+    & fieldset {
         justify-content: center;
-        gap: 3rem;
-
+        height: 100%;
+        border-block-end: 2px solid rgba(128, 128, 128, 0.281);
+        padding: 0 .5rem .5rem 0;
+        /* gap: .4rem; */
         & legend {
-            font-weight: bold;
-            font-size: .8rem;
-            color: gray;
+            margin-block-end: 1rem;
         }
-
-        & fieldset {
-            justify-content: center;
-            height: 100%;
-            border-block-end: 2px solid rgba(128, 128, 128, 0.281);
-            padding: 0 .5rem .5rem 0;
-            gap: .4rem;
-            & legend {
-                margin-block-end: 1rem;
-            }
-            & div {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                width: 100%;
-                gap: 2rem;
-                & span {
-                    flex-grow: 1;
-                }
-            }
-        }
-        & input, select {
-            /* flex-grow: 1; */
-            border-radius: .3rem;
-            padding: .5rem .9rem;
-            outline: none;
-            border: none;
-            /* height: 100%; */
-        }
-        & input[type='text'], input[type='number'] {
-            box-shadow: 0 0 .2rem 0 rgba(128, 128, 128, 0.541);
-            &:focus {
-                box-shadow: none;
-            }
-        }
-        & button {
+        & div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             width: 100%;
-            grid-column-start: 1;
-            grid-column-end: -1;
-            background-color: var(--primary-color);
-            color: white;
-            font-family: 'Montserrat Alternates';
-            text-transform: uppercase;
-            font-size: 1.5rem;
-            padding: .5rem;
-            transition: all.2s ease;
-            &:hover {
-                background-color: var(--secondary-color);
+            gap: 2rem;
+            & span {
+                flex-grow: 1;
             }
+        }
+    }
+    & input, select {
+        border-radius: .3rem;
+        padding: .5rem .9rem;
+        outline: none;
+        border: none;
+    }
+    & input[type='text'], input[type='number'], input[type='password']  {
+        box-shadow: 0 0 .2rem 0 rgba(128, 128, 128, 0.541);
+        &:focus {
+            box-shadow: none;
+        }
+    }
+    & button {
+        width: 100%;
+        grid-column-start: 1;
+        grid-column-end: -1;
+        background-color: var(--primary-color);
+        color: white;
+        font-family: 'Montserrat Alternates';
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        padding: .5rem;
+        transition: all.2s ease;
+        &:hover {
+            background-color: var(--secondary-color);
         }
     }
 }
@@ -829,8 +826,10 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     & .users-nav {
         width: 100%;
         height: 100%;
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 50px auto 100px;
+        /* justify-content: space-between; */
+        justify-items: center;
         align-items: center;
         padding: 0 2rem;
     }
@@ -846,7 +845,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
 }
 /* nombre navbar */
 .name-logo {
-    width: max-content;
+    /* width: max-content; */
     border-radius: 50%;
     object-fit: contain;
     object-position: center;
@@ -854,6 +853,8 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    text-align: center;
+    width: auto;
     & h1 {
         font-size: 2.5rem;
         font-family: 'Montserrat Alternates';
@@ -875,6 +876,15 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
 }
 .icons-functions {
     margin-inline-end: 1rem;
+    font-family: 'Montserrat Alternates';
+    justify-self: end;
+    font-size: .9rem;
+    & span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 200px;
+    }
     & svg {
         width: 35px;
         height: 35px;
@@ -1117,7 +1127,6 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         &:active { filter: saturate(65%); }
     }
 }
-
 /* SLOT -> SINGUP */
 /* -------↑↑↑-------- */
 
@@ -1365,6 +1374,123 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     }
 }
 
+/* SLOT - PERFIL */
+.user-profile-section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    background-color: #f4f5f7;
+    & h2 {
+        margin-top: 2.6rem;
+        text-align: center;
+        font-size: 2.6rem;
+        text-transform: uppercase;
+        font-family: 'Montserrat Alternates';
+    }
+}
+.user-account-actions-container {
+    padding: 0 4rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 450px 1fr;
+    gap: 4rem 2rem;
+    & .legend-action {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        & p, span { text-align: start; }
+        & span {
+            font-weight: 500;
+            color: rgb(39, 38, 38);
+            font-size: 1.2rem;
+        }
+        & p {
+            font-size: .95rem;
+        }
+    }
+}
+.user-actions .create-form {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: .6rem;
+    box-shadow: 0 .15rem .2rem 0 rgba(128, 128, 128, 0.342);
+    & legend { color: black; }
+    & fieldset {
+        border: none;
+        /* & input {
+            height: max-content;
+            box-shadow: 0 .07rem .2rem 0  rgba(128, 128, 128, 0.342);
+        } */
+    }
+    & button[type="submit"] {
+        width: 30%;
+        place-self: end;
+        border-radius: .3rem;
+        background-color: var(--manzblue);
+        &:hover {
+            background-color: var(--primary-color);
+        }
+    }
+}
+.sessions-list {
+    display: flex;
+    flex-direction: column;
+    & .session {
+        display: flex;
+        gap: 1.1rem;
+        align-items: center;
+        & svg { fill: #00000086; }
+        & h4 { font-weight: 500; }
+    }
+}
+.user-actions a {
+    width: 100%;
+    color: white;
+    background-color: var(--manzblue);
+    width: 100%;
+    font-family: 'Montserrat Alternates';
+    text-transform: uppercase;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: .4rem;
+    padding: .5rem;
+    transition: all.2s ease;
+    &:hover {
+        background-color: var(--primary-color);
+    }
+}
+.logout-form {
+    grid-column-start: 2;
+    grid-column-end: -1;
+    font-family: 'Montserrat Alternates';
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: var(--manzblue);
+    border-radius: .4rem;
+
+    & button {
+        text-transform: uppercase;
+        border-radius: .3rem;
+        padding: .5rem 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        color: #111111dc;
+        background-color: white;
+        border: 2px dotted black;
+        & svg { fill: black; }
+        &:hover {
+            color: black;
+            filter: opacity(90%);
+            border-color: transparent;
+        }
+    }
+}
 
 /* M E D I A     Q U E R I E S     U S U A R I O S */
 /* dispositivos pequeños */

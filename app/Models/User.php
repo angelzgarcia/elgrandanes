@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -47,5 +49,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    protected function name()
+    {
+        return new Attribute(
+            set: fn($name) => strtolower($name),
+            get: fn($name) => ucfirst($name)
+        );
+    }
+
+    protected function lastname()
+    {
+        return new Attribute(
+            set: fn($lastname) => strtolower($lastname),
+            get: fn($lastname) => ucfirst($lastname),
+        );
     }
 }
