@@ -120,7 +120,7 @@
                 <li>
                     <details>
                         <summary>
-                            Géneros musicales
+                            Música
                         </summary>
 
                         {{-- categorias --}}
@@ -178,17 +178,12 @@
             </ul>
         </div>
     </div>
-</aside>
 
+{{-- DESTROY ALERT FUNCTION --}}
 <script>
-    const button = document.getElementById('submit-delete');
-    const formDestroy = document.getElementById('form-destroy');
-
-    button.addEventListener('click', e => {
-        e.preventDefault();
-
+    function showConfirmAlert(confirmTitle, form, confirmButtonText = 'Si, eliminar') {
         Swal.fire({
-            title: '¿Estas seguro de eliminar el fichero?',
+            title: confirmTitle,
             toast: true,
             icon: 'question',
             position: 'bottom-start',
@@ -198,7 +193,7 @@
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             cancelButtonText: 'Cancelar',
-            confirmButtonText: 'Si, eliminar',
+            confirmButtonText: confirmButtonText,
             customClass: {
                 popup: 'colored-toast',
             },
@@ -217,20 +212,31 @@
                     toast.onmouseleave = Swal.resumeTimer;
                 }
             });
-            if (result.isConfirmed)
-                Toast.fire({
-                    icon: "success",
-                    title: "¡El menú ha sido eliminado!",
-                    timer: 1100
-                }).then(() => {
-                    formDestroy.submit();
-                })
-            else
+            if (result.isConfirmed) {
+                form.submit();
+            } else {
                 Toast.fire({
                     icon: "info",
                     title: "Operación cancelada",
                     timer: 3000
                 });
+            }
         });
-    })
+    }
 </script>
+    
+{{-- DESTROY ALERT CALLBACK --}}
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const button = document.getElementById('submit-delete');
+        const formDestroy = document.getElementById('form-destroy');
+
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            showConfirmAlert('¿Estás seguro de eliminar el fichero?', formDestroy);
+        });
+    });
+</script>
+
+</aside>
+

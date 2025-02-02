@@ -5,7 +5,7 @@
     <div class="create-form-container create-category-container">
 
         <h2 class="font-black">
-            Agregar categoría de género musical
+            Agregar categoría musical
         </h2>
 
         <form class="create-form create-category" action="{{ route('admin.music-category.store') }}" method="post" enctype="multipart/form-data">
@@ -25,6 +25,11 @@
                 Crear categoría
             </button>
         </form>
+
+        {{-- ALERTA --}}
+        @if (session('swal'))
+            <x-swal :title="session('swal.title')" />
+        @endif
 
     </div>
 

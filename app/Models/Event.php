@@ -24,7 +24,7 @@ class Event extends Model
 
     public function musicalGenre()
     {
-        return $this -> hasOne(MusicalGenre::class);
+        return $this -> hasOne(MusicalGenre::class, 'id', 'idGeneroMusical');
     }
 
 }

@@ -23,7 +23,6 @@ class StoreEventRequest extends FormRequest
     {
         return [
             'date' => 'required|date|after_or_equal:today',
-            'musical_genre' => 'required|in:pop,rock,hiphop,reggaeton,salsa,bachata,cumbia,merengue,electronica,house,techno,trance,norteño,mariachi,banda,ranchera',
             'start_event' => 'required|date_format:H:i',
             'end_event' => 'required|date_format:H:i|', // after:start_event
             'pre_sale_cost' => 'nullable|numeric|min:40',
@@ -35,6 +34,7 @@ class StoreEventRequest extends FormRequest
             'instagram' => 'nullable|url',
             'youtube' => 'nullable|url',
             'image_event' => 'required|image|mimes:jpg,jpeg,png|max:5048',
+            'musical_genre' => 'required|exists:musical_genres,id|integer',
         ];
     }
 
@@ -45,7 +45,7 @@ class StoreEventRequest extends FormRequest
             'date.date' => 'La fecha del evento debe ser válida.',
             'date.after_or_equal' => 'La fecha del evento no puede ser anterior al día de hoy.',
             'musical_genre.required' => 'El género musical es obligatorio.',
-            'musical_genre.in' => 'El género musical seleccionado no es válido.',
+            'musical_genre.exists' => 'El género musical seleccionado no es válido.',
             'start_event.required' => 'La hora de inicio del evento es obligatoria.',
             'start_event.date_format' => 'La hora de inicio debe estar en un formato válido (HH:mm).',
             'end_event.required' => 'La hora de cierre del evento es obligatoria.',

@@ -25,6 +25,19 @@
                 @enderror
             </fieldset>
 
+            {{-- MANTENER SESION ACTIVA --}}
+            <fieldset class="flex flex-row-reverse text-center w-full justify-end gap-6 relative items-center">
+                <div class="flex items-center ml-10">
+                    <legend class="font-bold !text-gray-900 text-start">Mantener sesión activa</legend>
+                </div>
+                <div class="absolute top-0.5">
+                    <input type="checkbox" name="remember" id="remember">
+                </div>
+                @error('remember')
+                    <div class="text-red-500">{{$message}}</div>
+                @enderror
+            </fieldset>
+
             <button type="submit" class="font-black">Entrar</button>
         </form>
 
@@ -36,30 +49,14 @@
                 Registrate
             </a>
         </div>
+
+        @if (session('swal'))
+            <x-swal
+                :icon={{session('swal.icon')}}
+                :title={{session('swal.title')}}
+            />
+        @endif
     </div>
 
-    @if (session('success'))
-        <script>
-            const Toast = Swal.mixin({
-                toast: true,
-                position: "top-end",
-                showConfirmButton: false,
-                timerProgressBar: true,
-                iconColor: 'white',
-                customClass: {
-                    popup: 'colored-toast',
-                },
-                didOpen: (toast) => {
-                    toast.onmouseenter = Swal.stopTimer;
-                    toast.onmouseleave = Swal.resumeTimer;
-                }
-            });
-            Toast.fire({
-                icon: "success",
-                title: '{{ session('success') }}',
-                timer: 3000
-            });
-        </script>
-    @endif
 </x-layouts.user-layout>
 

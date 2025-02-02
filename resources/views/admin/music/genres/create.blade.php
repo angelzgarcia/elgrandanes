@@ -1,6 +1,6 @@
 
 
-<x-layouts.admin-layout titulo="El Gran Danés Café-Bar | Admin | Agregar Género Musical">
+<x-layouts.admin-layout titulo="{{ env('APP_NAME') }} | Admin | Agregar Género Musical">
 
     @php
         $categories_exists = App\Models\MusicalGenreCategory::exists();
@@ -12,7 +12,7 @@
             Agregar género musical
         </h2>
 
-        <form class="create-form create-category" action="{{ route('admin.music-category.store') }}" method="post" enctype="multipart/form-data">
+        <form class="create-form create-category" action="{{ route('admin.music-genre.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             {{-- genero musical --}}
@@ -36,12 +36,13 @@
             @else
                 <fieldset class="flex flex-col">
                     <legend>Selecciona la categoría musical a la que pertenece este género</legend>
-                    @error('category')
+                    @error('category_id')
                         <div class="text-red-500">{{ $message }}</div>
                     @enderror
-                    <select name="category">
+                    <select name="category_id">
+                        <option selected disabled>Categoría musical</option>
                         @foreach ($categories as $category)
-                            <option {{ old('category') === $category->categoria_musical ? 'selected' : '' }} value="{{ $category->categoria_musical }}">
+                            <option {{ old('category') === $category->id ? 'selected' : '' }} value="{{ $category->id }}">
                                 {{ $category->categoria_musical }}
                             </option>
                         @endforeach
@@ -55,6 +56,10 @@
             </button>
         </form>
 
+        {{-- ALERTA --}}
+        @if (session('swal'))
+            <x-swal :title="session('swal.title')" />
+        @endif
     </div>
 
 </x-layouts.admin-layout>

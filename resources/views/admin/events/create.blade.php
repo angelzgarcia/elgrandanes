@@ -26,31 +26,13 @@
                     <div class="text-red-500">{{ $message }}</div>
                 @enderror
                 <select name="musical_genre" id="musical_genre">
-                    <option value="" disabled selected></option>
-                    <optgroup label="Populares">
-                        <option value="pop">Pop</option>
-                        <option value="rock">Rock</option>
-                        <option value="hiphop">Hip Hop</option>
-                        <option value="reggaeton">Reggaetón</option>
-                    </optgroup>
-                    <optgroup label="Latinos">
-                        <option value="salsa">Salsa</option>
-                        <option value="bachata">Bachata</option>
-                        <option value="cumbia">Cumbia</option>
-                        <option value="merengue">Merengue</option>
-                    </optgroup>
-                    <optgroup label="Electrónica">
-                        <option value="electronica">Electrónica</option>
-                        <option value="house">House</option>
-                        <option value="techno">Techno</option>
-                        <option value="trance">Trance</option>
-                    </optgroup>
-                    <optgroup label="Tradicional y regional">
-                        <option value="norteño">Norteño</option>
-                        <option value="mariachi">Mariachi</option>
-                        <option value="banda">Banda</option>
-                        <option value="ranchera">Ranchera</option>
-                    </optgroup>
+                    <option disabled selected>♫ ♪ ♫ ♪</option>
+                    @foreach ($music_categories as $category)
+                        <optgroup label="{{ $category->categoria_musical }}">
+                            @foreach ($music_genres as $genre)
+                                <option value="{{ $genre->id }}"> {{ $genre->genero }} </option>
+                            @endforeach
+                    @endforeach
                 </select>
             </fieldset>
             {{-- horario --}}

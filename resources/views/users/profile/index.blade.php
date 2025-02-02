@@ -145,7 +145,7 @@
             </div>
 
             {{-- CERRAR SESION --}}
-            <form action="" class="logout-form">
+            <form action="{{ route('logout') }}" class="logout-form" method="post">
                 @csrf
                 <button type="submit" class="logout-user font-black">
                     Cerrar sesión

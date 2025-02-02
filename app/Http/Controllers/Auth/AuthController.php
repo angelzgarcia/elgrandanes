@@ -10,10 +10,63 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function showRegisterForm()
+    {
+        return view('auth.singup');
+    }
+
+    public function singup(Request $request)
+    {
+        $request -> validate([
+            'name' => 'required|string|min:3|max:18',
+            'lastname' => 'required|string|min:3|max:35',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|max:15',
+            'term_cond' => 'required',
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.min' => 'El nombre debe tener al menos :min caracteres.',
+            'name.max' => 'El nombre no puede tener más de :max caracteres.',
+
+            'lastname.required' => 'Los apellidos son obligatorios.',
+            'lastname.min' => 'Los apellidos deben tener al menos :min caracteres.',
+            'lastname.max' => 'Los apellidos no pueden tener más de :max caracteres.',
+
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'Debes proporcionar un correo electrónico válido.',
+            'email.unique' => 'El correo electrónico ya está registrado.',
+
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
+            'password.max' => 'La contraseña no puede tener más de :max caracteres.',
+
+            'term_cond.required' => 'Marcar la casilla de verificación es obligatorio.',
+        ], [
+            'name' => 'nombre',
+            'lastname' => 'apellidos',
+            'email' => 'correo electrónico',
+            'password' => 'contraseña',
+            'term_cond' => 'términos y condiciones',
+        ]);
+
+        $idRol = 1;
+        $user = User::create([
+            'name' => $request -> name,
+            'lastname' => $request -> lastname,
+            'email' => $request -> email,
+            'password' => Hash::make($request->password),
+            'idRol' => $idRol,
+        ]);
+
+
+        return redirect() -> route('login.show') -> with('swal', [
+            'icon' => 'success',
+            'title' => '¡Cuenta creada con éxito!'
+        ]);
+    }
 
     public function showLoginForm()
     {
-        // if (Auth::check()) return redirect() -> route('home');
         return view('auth.login');
     }
 
@@ -49,54 +102,6 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect() -> route('login');
-    }
-
-    public function showRegisterForm()
-    {
-        return view('auth.singup');
-    }
-
-    public function singup(Request $request)
-    {
-        $request -> validate([
-            'name' => 'required|string|min:3|max:18',
-            'lastname' => 'required|string|min:3|max:35',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|max:15',
-        ], [
-            'name.required' => 'El nombre es obligatorio.',
-            'name.min' => 'El nombre debe tener al menos :min caracteres.',
-            'name.max' => 'El nombre no puede tener más de :max caracteres.',
-
-            'lastname.required' => 'Los apellidos son obligatorios.',
-            'lastname.min' => 'Los apellidos deben tener al menos :min caracteres.',
-            'lastname.max' => 'Los apellidos no pueden tener más de :max caracteres.',
-
-            'email.required' => 'El correo electrónico es obligatorio.',
-            'email.email' => 'Debes proporcionar un correo electrónico válido.',
-            'email.unique' => 'El correo electrónico ya está registrado.',
-
-            'password.required' => 'La contraseña es obligatoria.',
-            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
-            'password.max' => 'La contraseña no puede tener más de :max caracteres.',
-        ], [
-            'name' => 'nombre',
-            'lastname' => 'apellidos',
-            'email' => 'correo electrónico',
-            'password' => 'contraseña',
-        ]);
-
-        $idRol = 1;
-        $user = User::create([
-            'name' => $request -> name,
-            'lastname' => $request -> lastname,
-            'email' => $request -> email,
-            'password' => Hash::make($request->password),
-            'idRol' => $idRol,
-        ]);
-
-
-        return redirect() -> route('login.show')->with('success', '¡Cuenta creada con éxito!');
     }
 
 }

@@ -5,11 +5,13 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\MusicalGenreCategoryController;
 use App\Http\Controllers\Admin\MusicalGenreController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\User\EventsController as UserEventsController;
 use App\Http\Controllers\User\UserProfileController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/storage/files/{filename}', function ($filename) {
     $path = storage_path("app/public/files/{$filename}");
@@ -22,6 +24,10 @@ Route::get('/storage/files/{filename}', function ($filename) {
         'Content-Disposition' => 'inline; filename="' . $filename . '"',
     ]);
 });
+
+
+
+
 
 // R U T A S     U S U A R I O S
 Route::prefix('')
@@ -50,6 +56,7 @@ Route::prefix('')
 
 
 
+
 // R U T A S    A U T H
 Route::prefix('/auth')
     -> middleware('authenticated')
@@ -67,17 +74,20 @@ Route::post('/auth/logout', [AuthController::class, 'logout']) -> name('logout')
 
 
 
+
+
 //    R U T A S       U S U A R I O S      A U T E N  T I C A D O S
 Route::prefix('/profile')
     -> middleware(['auth', 'role:1'])
     -> controller(UserProfileController::class)
     -> group(function() {
 
-        Route::get('/', 'index') -> name('user.profile.index');
+        Route::get('', 'index') -> name('user.profile.index');
         Route::put('/details/{id}', 'updateProfile') -> name('user.profile-details.update');
         Route::put('/password/{id}', 'updatePassword') -> name('user.profile-password.update');
 
     });
+
 
 
 
@@ -89,7 +99,10 @@ Route::prefix('/admin')
     -> middleware(['auth', 'role:2'])
     -> group(function() {
 
-        Route::get('/dashboard',[ HomeController::class, 'index']) -> name('dashboard');
+        Route::get('/dashboard',[HomeController::class, 'index']) -> name('dashboard');
+
+        // P E R F I L
+        Route::get('/profile', [ProfileController::class, 'index']) -> name('admin.profile.index');
 
         // C R U D     U S U AR I O S
         Route::prefix('/users')
@@ -124,6 +137,16 @@ Route::prefix('/admin')
                 Route::delete('/{id}', 'destroy') -> name('admin.events.destroy');
             });
 
+        // C R U D     C A T E G O R I A S     D E    G E N E R O S     M U S I C A L E S
+        Route::prefix('/music-genre-category')
+        -> controller(MusicalGenreCategoryController::class)
+        -> group(function() {
+            Route::get('', 'index') -> name('admin.music-category.index');
+            Route::get('/create', 'create') -> name('admin.music-category.create');
+            Route::post('/store', 'store') -> name('admin.music-category.store');
+            Route::delete('/{id}', 'destroy') -> name('admin.music-category.destroy');
+        });
+
         // C R U D     G E N E R O S     M U S I C A L E S
         Route::prefix('/music-genre')
             -> controller(MusicalGenreController::class)
@@ -134,13 +157,4 @@ Route::prefix('/admin')
                 Route::delete('/{id}', 'destroy') -> name('admin.music-genre.destroy');
             });
 
-        // C R U D     C A T E G O R I A S     D E    G E N E R O S     M U S I C A L E S
-        Route::prefix('/music-genre-category')
-            -> controller(MusicalGenreCategoryController::class)
-            -> group(function() {
-                Route::get('', 'index') -> name('admin.music-category.index');
-                Route::get('/create', 'create') -> name('admin.music-category.create');
-                Route::post('/store', 'store') -> name('admin.music-category.store');
-                Route::delete('/{id}', 'destroy') -> name('admin.music-category.destroy');
-            });
     });

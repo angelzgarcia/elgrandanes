@@ -11,9 +11,13 @@ class MusicalGenre extends Model
 
     public function musicalCategory()
     {
-        return $this -> hasOne(MusicalGenreCategory::class);
+        return $this->belongsTo(MusicalGenreCategory::class, 'idCategoriaMusical', 'id');
     }
 
-    // protected function
+    public function event()
+    {
+        return $this->belongsToMany(Event::class);
+    }
+
 
 }

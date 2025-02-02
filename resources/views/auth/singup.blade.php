@@ -38,6 +38,26 @@
                 @enderror
             </fieldset>
 
+            {{-- TERMINOS Y CONDICIONES --}}
+            <fieldset class="relative flex flex-row gap-6 text-center w-full justify-between items-center">
+                <div class="absolute bottom-4">
+                    <input type="checkbox" name="term_cond" id="remember">
+                </div>
+                <div class="flex items-center ml-12">
+                    <span class="text-start text-sm">
+                        He leído y acepto los
+                        <strong>
+                            <a href="">
+                                Términos del Servicio y Política de Privacidad
+                            </a>
+                        </strong>
+                    </span>
+                </div>
+                @error('remember')
+                    <div class="text-red-500">{{$message}}</div>
+                @enderror
+            </fieldset>
+
             <button type="submit" class="font-black">Registrarse</button>
         </form>
 

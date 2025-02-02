@@ -3,7 +3,9 @@
     <nav class="admin-nav-bar">
         <div class="avatar-name uppercase ml-10 text-black font-bold text-sm">
             <div class="admin-avatar shadow-2xl">
-                <img src="{{ img_a_url('avatar-m5.jpg') }}" alt="">
+                <a href="{{ route('admin.profile.index') }}">
+                    <img src="{{ img_a_url('avatar-m5.jpg') }}" alt="">
+                </a>
             </div>
             <p class="admin-name text-ellipsis w-48 text-black overflow-hidden whitespace-nowrap italic">
                 @if (Auth::user()->idRol === 2)
@@ -14,7 +16,7 @@
             </p>
         </div>
 
-        <div class="dbt w-full text-start text-[#fff] font-black text-5xl uppercase">
+        <div class="dbt w-full text-start text-[#000] font-black text-5xl uppercase">
             DASHBOARD
         </div>
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreEventRequest;
 use App\Models\Event;
+use App\Models\MusicalGenre;
+use App\Models\MusicalGenreCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -16,7 +18,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::orderBy('id', 'desc')
+        $events = Event::orderBy('id', 'asc')
                         -> paginate(perPage:8, pageName: 'eventsPage');
 
         return view('admin.events.index', compact('events'));
@@ -27,7 +29,15 @@ class EventsController extends Controller
      */
     public function create()
     {
-        return view('admin.events.create');
+        $music_genres = MusicalGenre::select('genero', 'id')
+                                    -> orderBy('genero', 'asc')
+                                    -> get();
+
+        $music_categories = MusicalGenreCategory::select('categoria_musical', 'id')
+                                    -> orderBy('categoria_musical', 'asc')
+                                    -> get();
+
+        return view('admin.events.create', compact('music_genres', 'music_categories'));
     }
 
     /**
@@ -55,7 +65,6 @@ class EventsController extends Controller
             'slug' => $slug,
             'costo_preventa' => $request -> pre_sale_cost ?? 0,
             'costo_taquilla' => $request -> ticket_cost ?? 0,
-            'genero' => $request -> musical_genre,
             'facebook' => $request -> fb,
             'instagram' => $request -> instagram,
             'youtube' => $request -> youtube,
@@ -64,6 +73,7 @@ class EventsController extends Controller
             'tipo_evento' => $request -> event_type,
             'imagen' =>
                 basename($file -> storeAs('imgs/uploads/events',   time() . '-' . $file -> getClientOriginalName(), 'public')),
+            'idGeneroMusical' => $request -> musical_genre
         ]);
 
         if (!$event) return back()->withErrors(['error' => 'No se pudo crear el evento']);
@@ -78,7 +88,9 @@ class EventsController extends Controller
      */
     public function show($slug)
     {
-        $event = Event::where('slug', $slug) -> first();
+        $event = Event::with('musicalGenre')
+                        -> where('slug', $slug)
+                        -> first();
 
         return view('admin.events.show', compact('event'));
     }

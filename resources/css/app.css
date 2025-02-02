@@ -9,48 +9,8 @@
     --darkblue1: #0f1018;
     --darkblue2: #060315;
     --darkblue03:#000b18;
-    --midnightdeepdarkblue: #0b0d11;
-    --benbluedark: #020617;
-    --midnightdarkblue: #10131a;
-    --benbluelight: #02172f;
-    --midnightdeepblue: #19192e;
-    --nightblue: #15202b;
-    --manzblue: #0e252f;
     --bluedots: #171c31;
-    --midnightblue: #1b222f;
-    --midnightlightblue: #232f3e;
-    --midnightmetablue: #1e3443;
-    --bluelightdots: #22283f;
-    --bluewild: #133745;
-    --deepgray: #494949;
-    --graylight: #797979;
-    --lightnavy: #1b355e;
-    --darknavy: #00008b;
-    --navy: #000080;
-    --indigo: #4a0080;
-    --rebeccapurple: #663399;
-    --indigo-light: #55558d;
-    --solidblue: #4e41e0;
-    --blueviolet: #8a2be2;
-    --ad3ae1: #ad3ae1;
-    --steelblue: #4682b4;
-    --bluesky: #44b7e9;
-    --bluelight: #87abff;
-    --bluedev: #bc9afa;
-    --blueclean: #c9e1eb;
-    --cyan: #00ffff;
-    --hotpink: #ff69b4;
-    --gold: #ffd700;
-    --solidyellow: #f0ac03;
-    --smoothyellow: #f4d648;
-    --palegold: #ff914d;
-    --organizativo-mucho:#ff914d;
-    --palelightgold: #b6d161;
-    --palered: #f3624e;
-    --lime: #00ff00;
-    --green: #7bbe78;
-    --lightgreen: #04aa6d;
-    --orange: #ec7211;
+    --manzblue: #0e252f;
     --darkred: #8b0000;
     --redcarmesi: #af340b;
     --redpink: #ba2934;
@@ -61,8 +21,6 @@
     --blueG: #8f71db;
     --greenG: #89b44b;
     --yellowG: #ffcb32;
-    --pinkG: #ba5d92;
-    --purple: #362946;
     --primary-color: #e69915;
     --secondary-color: #ff301a;
 
@@ -84,7 +42,7 @@
     scrollbar-width: thin;
 }
 
-/*  S W E E T     A L E R T S    S T Y L E S  */
+/*  S W E E T     A L E R T S  */
 .colored-toast.swal2-icon-success { background-color: #9cd37d !important; }
 .colored-toast.swal2-icon-warning { background-color: #dbd815 !important; }
 .colored-toast.swal2-icon-error { background-color: var(--redG) !important; }
@@ -118,7 +76,6 @@
         font-weight: bolder;
     }
 }
-
 .spinner {
     width: 50px;
     height: 50px;
@@ -137,7 +94,6 @@
         background-color: var(--primary-color);
     }
 }
-
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -147,11 +103,36 @@
     }
 }
 
+/* C U RS O R    P O I N T E R */
+.custom-cursor {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+.cursor-point {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+}
+
+/* P A G I N A D O R E S */
 .paginator {
     width: 100%;
     padding: 1rem;
     background-color: #000;
 }
+
+
 
 
 /* A D M I N     S T Y L E S */
@@ -177,7 +158,7 @@
     grid-area: nav;
     /* background-color: #00af9a; */
     /* background-color: var(--primary-color); */
-    background-color: #dda749;
+    /* background-color: #dda749; */
     /* color: white; */
     display: flex;
     /* nav-bar */
@@ -186,6 +167,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 5rem;
+        box-shadow: 0 .05rem .1rem 0 rgba(128, 128, 128, 0.664);
         & .avatar-name {
             display: flex;
             justify-content: center;
@@ -194,12 +177,13 @@
             & .admin-avatar {
                 width: 65px;
                 border: 5px solid wheat;
+                box-shadow: 0 .2rem .3rem .05rem rgba(128, 128, 128, 0.747);
                 overflow: hidden;
                 background-color: #fff;
                 border-radius: 50%;
-                & img { width: 100%; height: 100%;}
+                & a img { width: 100%; height: 100%;}
             }
-            & p { font-family: 'Montserrat Alternates'; text-align: start; color: #fff; }
+            & p { font-family: 'Montserrat Alternates'; text-align: start; color: #000; }
         }
         & .dbt { font-family: 'Montserrat Alternates'; }
         & .logo {
@@ -210,7 +194,7 @@
             background-color: #fff;
             border-radius: 50%;
             object-position: top;
-            box-shadow: .2rem -.5rem .6rem .6rem white;
+            /* box-shadow: .2rem -.5rem .3rem .6rem #e6e31557; */
             margin: 0 2rem;
             transition: .32s all ease;
             position: relative;
@@ -288,7 +272,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
                     transition: transform 0.2s ease;
                 }
             }
-            & details[open] summary::after {
+            & details[open] > summary::after {
                 content: "➖";
                 transform: rotate(0deg);
             }
@@ -431,17 +415,18 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         font-family: 'Montserrat';
         display: flex;
         flex-direction: column;
-        gap: .7rem;
+        gap: 1rem;
         & div {
             justify-content: space-between;
             display: flex;
             /* background-color: #e6991570; */
-            border: 2.3px dashed #1a1408;
+            border: 2.3px dashed gray;
             border-radius: .4rem;
-            padding: .2rem 1rem;
+            padding: .6rem 1rem;
             color: #000000;
             font-weight: bold;
             & p {
+                color: black;
                 font-size: 1.1rem;
                 display: flex;
                 justify-content: center;
@@ -450,6 +435,9 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
                 & svg { fill: #e69915; height: 20px; }
             }
             & span { font-weight: normal; font-family: 'Sansita Swashed'; text-align: end; padding-inline-end: .6rem; }
+            &:hover {
+                background-color: #f5f5f5;
+            }
         }
     }
 }
@@ -589,7 +577,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         align-items: stretch;
         justify-content: space-between;
         padding: 0 1rem;
-        & .header-event {
+        & .header-grid {
             display: flex;
             align-items: center;
             text-align: start;
@@ -775,8 +763,31 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     }
 }
 
-
 /* SLOT - GENEROS MUSICALES */
+
+
+/*  REGISTERS NOT FOUND / EMPTY  */
+.empty-table {
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    & .not-found-svg {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        & svg {
+            width: 120px;
+            height: 120px;
+            fill: rgba(128, 128, 128, 0.671);
+        }
+    }
+    & .not-found-legend {
+        font-family: 'Sansita Swashed';
+        font-size: 2.1rem;
+    }
+}
 
 /* M E D I A     Q U E R I E S   A D M I N I S T R A D O R  */
 /* media querie dashboard */
@@ -809,6 +820,8 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     display: grid;
     width: 100%;
     height: 100%;
+    background-color: #f4f5f7;
+    overflow-x: hidden;
     grid-template-areas:
     "nav"
     "main"
@@ -817,12 +830,18 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     --footer-size: 400px;
     grid-template-columns: 1fr;
     grid-template-rows: var(--usersnav-size) 1fr auto;
+    position: relative;
 }
 
 /* HEADER - NAVBAR */
 .users-header {
     grid-area: "nav";
-    background-color: #e69915;
+    /* background-color: #e69915; */
+    background-color: #fff;
+    position: sticky;
+    inset: 0;
+    z-index: 1000;
+    box-shadow: 0 .03rem .1rem 0 rgba(128, 128, 128, 0.555);
     & .users-nav {
         width: 100%;
         height: 100%;
@@ -841,6 +860,9 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     & svg {
         width: 30px;
         height: 30px;
+        &:hover {
+            fill: var(--primary-color);
+        }
     }
 }
 /* nombre navbar */
@@ -856,14 +878,14 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     text-align: center;
     width: auto;
     & h1 {
-        font-size: 2.5rem;
+        font-size: 2.6rem;
         font-family: 'Montserrat Alternates';
         text-transform: uppercase;
     }
 }
 /* logo nabbar */
 .img-logo {
-    background-color: #fff;
+    /* background-color: #fff; */
     border-radius: 50%;
     cursor: pointer;
     transition: all .4s ease;
@@ -879,6 +901,8 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     font-family: 'Montserrat Alternates';
     justify-self: end;
     font-size: .9rem;
+    display: flex;
+    gap: 2rem;
     & span {
         overflow: hidden;
         text-overflow: ellipsis;
@@ -886,8 +910,12 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         max-width: 200px;
     }
     & svg {
+        fill: #000;
         width: 35px;
         height: 35px;
+        &:hover {
+            fill: var(--primary-color);
+        }
     }
 }
 
@@ -985,7 +1013,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         position: absolute;
         bottom: 10%;
         background-color: #fff;
-        padding: 1rem;
+        padding: .5rem;
         z-index: 10;
         font-family: 'Montserrat Alternates';
         font-size: 2rem;
@@ -1026,10 +1054,22 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
 /* google maps */
 .location  {
     & h3 {
+        /* background-color: #fd2e17ee; */
+        background-image: linear-gradient(
+            to top,
+            #fd2e17bd,
+            #fd2e17ee,
+            #ff301a,
+            #fd2e17ee,
+            #fd2e17bd
+        );
+        color: white;
+        word-spacing: .3rem;
         font-size: 3rem;
         text-align: center;
-        margin-block: 3rem;
+        padding-block: 3rem;
         font-family: 'Sansita Swashed';
+        font-weight: bolder;
     }
     & #map {
         width: 100%;
@@ -1053,7 +1093,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    margin-block: 4rem;
+    margin-block: 2rem;
     gap: 3rem;
     & h2 {
         font-family: 'Montserrat Alternates';
@@ -1067,12 +1107,14 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
 }
 /* login form */
 .login-singup-forms {
-    width: 30%;
+    width: 36%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
     gap: 2.7rem;
+    padding: 2rem;
     & fieldset, input, legend {
         width: 100%;
         display: flex;
@@ -1086,6 +1128,10 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
             padding: 1rem 0;
             font-size: 1.5rem;
             font-weight: 400;
+        }
+        & div input[type="checkbox"] {
+            width: 1.2rem;
+            height: 1.2rem;
         }
     }
     & button {
@@ -1138,7 +1184,6 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         font-family: 'Sansita Swashed';
         padding: .5rem;
         text-shadow: 0 0 .2rem white;
-        background-color: var(--deepblack);
         color: rgb(243, 230, 205);
     }
     & .menu-view {
@@ -1167,28 +1212,28 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
             height: 6rem;
         }
     }
-    & .go-back a {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 1.3rem;
-        align-items: center;
-        & p {
-            font-size: 1.5rem;
-            font-family: 'Montserrat';
-            text-decoration: underline;
-            color: #2c2c2c;
-            text-decoration-color: var(--primary-color);
-        }
-        & span {
-            background-color: var(--secondary-color);
-            border-radius: .1rem;
-            padding: .5rem;
-            & svg {
-                width: 2rem;
-                height: 2rem;
-                fill: white;
-            }
+}
+.menu-container .go-back a, .go-back a {
+    width: max-content;
+    display: flex;
+    justify-content: center;
+    gap: 1.3rem;
+    align-items: center;
+    & p {
+        font-size: 1.5rem;
+        font-family: 'Montserrat';
+        text-decoration: underline;
+        color: #2c2c2c;
+        text-decoration-color: var(--primary-color);
+    }
+    & span {
+        background-color: var(--secondary-color);
+        border-radius: .1rem;
+        padding: .5rem;
+        & svg {
+            width: 2rem;
+            height: 2rem;
+            fill: white;
         }
     }
 }
@@ -1320,39 +1365,38 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
 /* SLOT - PREVIOUS EVENTS */
 .previous-events-container {
     width: 100%;
+    background-color: #fff;
     height: calc(100vh - 110px);
-    background-image: url(../../public/imgs/downloads/nasas-webb-delivers-deepest-infrared-image-of-universe-yet_52210366419_o.png);
-    background-color: black;
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     grid-auto-rows: auto;
-    justify-content: center;
-    /* align-items: start; */
+    align-items: end;
     align-items: stretch;
     gap: 3rem 2rem;
     overflow-y: auto;
-    padding: 3em 2rem;
+    padding: 3em 4rem;
+    scrollbar-color: initial;
 }
 .previous-event {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     justify-content: space-between;
-    align-items: center;
     transition: all .5s ease;
     & .img-previous-event {
         width: 100%;
-        height: 100%;
+        min-height: 400px;
+        min-height: max-content;
         display: flex;
-        align-items: center;
         & img {
-            /* border: 1px dashed white; */
+            transition: all 1s ease;
             object-fit: contain;
-            border-radius: .2em;
+            border-radius: .4em;
             object-position: center;
+            box-shadow: 0 0 .5rem .2rem rgba(44, 39, 39, 0.479);
         }
     }
     & p {
@@ -1363,6 +1407,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         color: white;
         /* border: 1px dotted rgba(255, 255, 255, 0.637); */
         font-style: italic;
+        font-weight: bold;
         border-radius: .2rem;
         transition: all .35s ease;
     }
@@ -1370,6 +1415,9 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         transform: scale(105%);
         & p {
             box-shadow: 0 -.4rem 1.3rem 0 rgba(255, 255, 255, 0.897);
+        }
+        & img {
+            filter: invert(85%);
         }
     }
 }
@@ -1384,8 +1432,14 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
     & h2 {
         margin-top: 2.6rem;
         text-align: center;
-        font-size: 2.6rem;
-        text-transform: uppercase;
+        font-size: 1.8rem;
+        /* text-transform: uppercase; */
+        color: #111;
+        font-style: italic;
+        font-weight: bold;
+        text-align: end;
+        /* text-shadow: 0 0 .2rem gray; */
+        padding-inline-end: 4rem;
         font-family: 'Montserrat Alternates';
     }
 }
@@ -1480,7 +1534,7 @@ p { color: #a0a40d; font-family: 'Montserrat Alternatives'; font-size: .9rem; te
         justify-content: center;
         align-items: center;
         gap: 1rem;
-        color: #111111dc;
+        /* color: #111111dc; */
         background-color: white;
         border: 2px dotted black;
         & svg { fill: black; }
